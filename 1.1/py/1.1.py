@@ -1,7 +1,4 @@
-import sys
-
-sys.path.append("/home/adam/github_repos/CTCI/helpers")
-from CTCI_helpers import run_tests
+from leetcode_helpers import run_test_scenarios
 # Q: determine if a string contains all unique character
 # Clarification:
 #   -What character set are we using? If we have a fixed character set we can use 
@@ -31,12 +28,13 @@ tests = {
 
 def isUnique(s):
     for i in range(len(s)):
-        for j in range(i+1  , len(s)):
+        for j in range(i+1, len(s)):
             if s[i] == s[j]:
                 return False
     return True
 
-run_tests(tests, isUnique, "brute force")
+run_test_scenarios(isUnique, tests, "brute force")
+
 # A2: Fastest solution
 # Description: Use a dict to store seen characters as we iterate through the array
 # Time: O(n)
@@ -49,7 +47,7 @@ def isUnique(s):
             return False
         seenChars[char] = True
     return True
-run_tests(tests, isUnique, "fastest solution")
+run_test_scenarios(isUnique, tests, "fastest solution")
 
 # A3: fastest solution using no additional space
 # Description: If we sort the string first, then we only need to iterate through the string once afterward
@@ -66,4 +64,4 @@ def isUnique(s):
         j += 1
     return True
 
-run_tests(tests, isUnique, "O(1) space (sorted)")
+run_test_scenarios(isUnique, tests, "O(1) space (sorted)")
